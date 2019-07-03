@@ -1,43 +1,53 @@
-var comp = ["a", "b", "c", "d", "e", "f", "g", "h"];
+var comp = ["a", "b", "c", "d", "e", "f", "g", "h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var score = 0;
 var chances = 4;
+var keypresscapture=[];
+var computercapture=[];
+
 // Get the length of the array
 var complen = comp.length;
 
-// COmputer to pick random from the array comp
+// Computer to pick random from the array comp
+function guess(){
+return comp[Math.floor(Math.random() * complen)];
+}
 
-var computerguess = comp[Math.floor(Math.random() * complen)];
+//function to stop after x attempts
+function stop(){
+  return;
+}
 
-// Get the lenth of the array
-var complen = comp.length;
+computercapture.push(guess());
 
-
-
-//Capture the keystroke
-for (j = chances; j > 0; j--) {
-
-  for (var i = 0; i < complen; i++) {
+    //Capture the keystroke 
     document.onkeydown = function (event) {
-      var userinput = event.key.toLowerCase();
-      console.log(computerguess);
-      console.log(score);
-      console.log(userinput);
+    var userinput = event.key.toLowerCase();
+    keypresscapture.push(event.key.toLowerCase());
 
-      if (userinput === computerguess) {
-        
-        document.getElementById("score").innerHTML = "Score is: " + score;
-        alert("Congratulations");
+      //Output the user key press
+      document.getElementById("userinput1").innerHTML = "You entered: " + keypresscapture;
+
+      //If userinput is same as computerguess then up the score and display alert
+      if (userinput === guess() && chances> 0) {
         score++;
+        document.getElementById("score").innerHTML = "Score is: " + score
+        alert("Congratulations");
+        computerchoice=guess();
+        
       } 
+
+      //else if chances still less than 4 
       else if (chances > 0) {
 
-        alert("wrong. Try again");
         chances--;
-        document.getElementById("chances left").innerHTML = "Chances left " + chances;
+        document.getElementById("chancesleft").innerHTML = "Chances left: " + chances;
+        alert("wrong. Try again");
       } 
+      //else if no chances left
       else {
-        document.write(" game over");
+        document.getElementById("computerguessed").innerHTML = "Computer guessed character: " + computercapture;
+        document.getElementById("gameover").innerHTML = "GAME OVER.<br>Press F5 to start a new game. " ;
+       stop();
       }
     }
-  }
-}
+
