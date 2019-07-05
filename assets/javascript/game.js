@@ -1,52 +1,72 @@
-var comp = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var strangers = ["Joyce",
+  "Jim ",
+  "Mike",
+  "Eleven",
+  "Dustin",
+  "Lucas",
+  "Nancy",
+  "Jonathan",
+  "Karen",
+  "Martin",
+  "Will",
+  "Steve",
+  "Max",
+  "Billy",
+  "Bob",
+  "Sam",
+  "Robin",
+  "Ted",
+  "Calvinl",
+  "Lonnie",
+  "Barb",
+  "Phil",
+  "Demogorgon",
+  "Connie",
+  "Scott",
+  "James",
+  "Holly",
+  "Florence",
+  "Russell",
+  "Donald",
+  "Tommy",
+  "Carol",
+  "Marsha",
+  "Terry",
+  "Becky",
+  "Eight",
+  "Claudia",
+  "Murray",
+  "Erica",
+  "Mayor",
+  "Bruce",
+  "Troy",
+  "Heather"
+];
+var strangerschar=[];
 var score = 0;
-var chances = 4;
+var chances = 10;
 var keypresscapture = [];
 var computercapture = [];
 
 // Get the length of the array
-var complen = comp.length;
+var complen = strangers.length;
 
 // Computer to pick random from the array comp
 function guess() {
-  return comp[Math.floor(Math.random() * complen)];
+  return strangers[Math.floor(Math.random() * complen)];
+
 }
 
-//function to stop after x attempts
-function stop() {
-  return;
+var character=guess();
+
+//convert the random word to individual characters
+for (var i=0;i<character.length;i++){
+strangerschar.push(character[i]);
 }
 
-computercapture.push(guess());
-
-//Capture the keystroke 
+console.log(character);
+console.log(strangerschar);
 document.onkeydown = function (event) {
   var userinput = event.key.toLowerCase();
   keypresscapture.push(event.key.toLowerCase());
-
-  //Output the user key press
-  document.getElementById("userinput1").innerHTML = "You entered: " + keypresscapture;
-
-  //If userinput is same as computerguess then up the score and display alert
-  if (userinput === guess() && chances > 0) {
-    score++;
-    document.getElementById("score").innerHTML = "Score is: " + score
-    alert("Congratulations");
-    computerchoice = guess();
-
-  }
-
-  //else if chances still less than 4 
-  else {
-
-    chances--;
-    document.getElementById("chancesleft").innerHTML = "Chances left: " + chances;
-    alert("wrong. Try again");
-  }
-  //else if no chances left
-  if (chances == 0) {
-    document.getElementById("computerguessed").innerHTML = "Computer guessed character: " + computercapture;
-    document.getElementById("gameover").innerHTML = "GAME OVER.<br>Press F5 to start a new game. ";
-    stop();
-  }
 }
