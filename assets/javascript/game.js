@@ -54,19 +54,34 @@ var complen = strangers.length;
 // Computer to pick random from the array comp
 function guess() {
   return strangers[Math.floor(Math.random() * complen)];
-
 }
 
 var character=guess();
-
+// var guessword= document.getElementById("word");
 //convert the random word to individual characters
-for (var i=0;i<character.length;i++){
-strangerschar.push(character[i]);
+for (var i = 0;i<character.length;i++){
+strangerschar.push(character[i].toLowerCase());
 }
 
 console.log(character);
 console.log(strangerschar);
+//get the characters to -
+var progressWord = [];
+//Capture the keystroke 
+
+for (var j = 0; j < strangerschar.length; j++){
+  progressWord[j] = "_"}
+  
+//output the - to html in the form -----
+
+console.log(progressWord);
+
+document.getElementById("word").innerHTML = progressWord.join(" ");  
+
+ 
 document.onkeydown = function (event) {
   var userinput = event.key.toLowerCase();
   keypresscapture.push(event.key.toLowerCase());
+
+
 }
